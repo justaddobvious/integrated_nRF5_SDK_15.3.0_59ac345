@@ -115,7 +115,7 @@ SRC_FILES += \
   $(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_eddsa.c \
   $(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_hash.c \
   $(SDK_ROOT)/components/libraries/crypto/backend/oberon/oberon_backend_hmac.c \
-  $(SDK_ROOT)/external/ocelot/src/m_ocelot.c
+  ../../../../../../ocelot/src/m_ocelot.c
 
 # Include folders common to all targets
 INC_FOLDERS += \
@@ -263,13 +263,13 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/nfc/ndef/conn_hand_parser/ac_rec_parser \
   $(SDK_ROOT)/components/libraries/stack_guard \
   $(SDK_ROOT)/components/libraries/log/src \
-  $(SDK_ROOT)/external/ocelot/include \
+  ../../../../../../ocelot/include \
 
 # Libraries common to all targets
 LIB_FILES += \
   $(SDK_ROOT)/external/nrf_cc310/lib/cortex-m4/hard-float/libnrf_cc310_0.9.12.a \
   $(SDK_ROOT)/external/nrf_oberon/lib/cortex-m4/hard-float/liboberon_2.0.7.a \
-  $(SDK_ROOT)/external/ocelot/lib/libocelot.a \
+  ../../../../../../ocelot/lib/libocelot.a \
 
 # Optimization flags
 OPT = -O3 -g3

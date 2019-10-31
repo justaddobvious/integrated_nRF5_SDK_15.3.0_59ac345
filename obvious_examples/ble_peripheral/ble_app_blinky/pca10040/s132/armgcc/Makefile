@@ -78,7 +78,7 @@ SRC_FILES += \
   $(SDK_ROOT)/components/ble/peer_manager/security_dispatcher.c \
   $(SDK_ROOT)/components/ble/peer_manager/security_manager.c \
   $(SDK_ROOT)/components/libraries/fds/fds.c \
-  $(SDK_ROOT)/external/ocelot/src/m_ocelot.c
+  ../../../../../../ocelot/src/m_ocelot.c
 
 # Include folders common to all targets
 INC_FOLDERS += \
@@ -209,11 +209,11 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/nfc/ndef/conn_hand_parser/ac_rec_parser \
   $(SDK_ROOT)/components/libraries/stack_guard \
   $(SDK_ROOT)/components/libraries/log/src \
-  $(SDK_ROOT)/external/ocelot/include \
+  ../../../../../../ocelot/include \
 
 # Libraries common to all targets
 LIB_FILES += \
-  $(SDK_ROOT)/external/ocelot/lib/libocelot.a \
+  ../../../../../../ocelot/lib/libocelot.a \
 
 # Optimization flags
 OPT = -O3 -g3

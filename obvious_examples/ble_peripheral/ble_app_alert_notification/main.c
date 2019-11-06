@@ -120,7 +120,7 @@
 
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
-#define OBVIOUS_LED                     3                                           /**< LED4 on the PCA10040 DK */
+#define OBVIOUS_LED                     BSP_BOARD_LED_3                             /**< LED4 on the PCA10040 DK */
 #define OBVIOUS_LED_BLINK_INTERVAL      APP_TIMER_TICKS(500)
 
 typedef enum

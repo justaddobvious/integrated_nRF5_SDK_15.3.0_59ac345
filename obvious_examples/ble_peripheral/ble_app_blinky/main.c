@@ -163,8 +163,11 @@ static void obvious_led_blink_handler(void* p_context)
 {
    UNUSED_PARAMETER(p_context);
 
-   if(ocelot_is_feature_enabled(OCELOT_FEATURE_BLINK_LED_3))
+   if(ocelot_is_feature_purchased(OCELOT_FEATURE_BLINK_LED_3))
       bsp_board_led_invert(OBVIOUS_LED);
+
+   if(ocelot_is_feature_enabled(OCELOT_FEATURE_BLINK_LED_3))
+      bsp_board_led_on(OBVIOUS_LED);
 }
 
 /**@brief Function for the Timer initialization.

@@ -32,8 +32,7 @@
 #define OCELOT_FEATURE_RESERVED_14     14
 #define OCELOT_FEATURE_RESERVED_15     15
 #define OCELOT_FEATURE_BLINK_LED_3     16
-#define OCELOT_FEATURE_BLINK_LED_4     17
-#define OCELOT_FEATURE_UART            18
+#define OCELOT_FEATURE_UART            16
 
 #endif // !defined(OCELOT_FEATURE_H_)
 

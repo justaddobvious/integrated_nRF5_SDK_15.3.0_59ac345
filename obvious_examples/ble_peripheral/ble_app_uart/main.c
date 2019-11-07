@@ -212,7 +212,7 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
         {
             do
             {
-                if (ocelot_is_feature_enabled(OCELOT_FEATURE_UART))
+                if (ocelot_is_feature_enabled(EXAMPLE_PROJECT_FEATURE_UART))
                    err_code = app_uart_put(p_evt->params.rx_data.p_data[i]);
                 else
                    err_code = app_uart_put(p_evt->params.rx_data.p_data[p_evt->params.rx_data.length - i]);

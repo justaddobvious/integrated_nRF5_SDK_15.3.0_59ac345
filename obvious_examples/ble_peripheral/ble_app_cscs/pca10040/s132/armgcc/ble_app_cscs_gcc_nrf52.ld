@@ -3,25 +3,16 @@
 SEARCH_DIR(.)
 GROUP(-lgcc -lc -lnosys)
 
+INCLUDE "../../../../../../ocelot/include/libocelot.ld"
+
 MEMORY
 {
   FLASH (rx) : ORIGIN = 0x26000, LENGTH = 0x57000
-  OCELOT_FLASH_START (rx) : ORIGIN = 0x7A000, LENGTH = 0x3000
   RAM (rwx) :  ORIGIN = 0x20002230, LENGTH = 0xddd0
-  OCELOT_RESET_SAFE_RAM (rwx) : ORIGIN = 0x2000FFE0, LENGTH = 0x20
 }
 
 SECTIONS
 {
-   .ocelot_flash (NOLOAD):
-   {
-      *(.ocelot_flash)
-   } > OCELOT_FLASH_START
-   .ocelot_reset_safe_ram (COPY):
-   {
-      . = ALIGN(4);
-      *(.ocelot_reset_safe_ram)
-   } > OCELOT_RESET_SAFE_RAM
 }
 
 SECTIONS

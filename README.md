@@ -7,7 +7,7 @@ nRF5\_SDK\_15.3.0\_59ac345 examples with obvious integrated. Note that the follo
   * For these examples, name your product "Example Product"
   * The feature region size should be 4096.
 3. Click on your product, and create a new feature by clicking "Add" in the top-right corner of the product's "Features" tab.
-  * For these examples, name your feature "Feature Blink LED 4".
+  * For these examples, name your feature "Feature Blink LED 4". If you wish to evaluate the ble\_app\_uart example, name your feature "Feature UART".
   * Using the drop-down list, select "Provision" as the option for how the feature is to be delivered.
   * Toggle the "Feature Status" button to the "on" position.
 4. Build and download the embedded library.
@@ -25,4 +25,6 @@ nRF5\_SDK\_15.3.0\_59ac345 examples with obvious integrated. Note that the follo
 9. Set the GNU\_INSTALL\_ROOT environment variable to /usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/ and ensure that ARM GCC 7-2018-q2-update is indeed located in the aforementioned location.
 10. Build the example by entering the ```make``` command.
 11. Program the example onto your development kit by entering ```make erase```, ```make flash_softdevice```, and then ```make flash```
+12. Back in the portal, select your product and navigate to the "Keys" page. Then, make note of your 16-byte product key. This key must be flashed onto your development board at address 0x7B000. One option is to copy the product key into a .bin file and use the J-Link Commander utility's loadbin command to load the key to the aforementioned address. At this point, the example can be tested with the Obvious Discover app!
+
   

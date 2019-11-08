@@ -46,7 +46,7 @@ static const struct OCELOT_INIT m_ocelot_init_info =
    {
       .release = 0,
       .major = 1,
-      .minor = 0
+      .minor = 1
    },
    .evt_handler = m_ocelot_evt_handler
 };

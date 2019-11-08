@@ -10,6 +10,7 @@
 
 #include "app_timer.h"
 #include "ble.h"
+#include "ble_gap.h"
 #include "nrf_fstorage.h"
 #include "nrf_fstorage_sd.h"
 #include "nrf.h"
@@ -46,9 +47,18 @@ static const struct OCELOT_INIT m_ocelot_init_info =
    {
       .release = 0,
       .major = 1,
-      .minor = 0
+      .minor = 3
    },
    .evt_handler = m_ocelot_evt_handler
+};
+static const ble_gap_sec_params_t m_gap_security_settings =
+{
+   .bond = 0,
+   .mitm = 0,
+   .io_caps = BLE_GAP_IO_CAPS_NONE,
+   .oob = 0,
+   .min_key_size = 7,
+   .max_key_size = 16
 };
 
 
@@ -148,6 +158,26 @@ static void m_ocelot_timer_handler(void* context)
 static void m_ocelot_ble_evt_handler(const ble_evt_t* p_ble_evt, void* p_context)
 {
    (void) p_context;
+
+   switch (p_ble_evt->header.evt_id)
+   {
+      case BLE_GAP_EVT_SEC_PARAMS_REQUEST:
+         sd_ble_gap_sec_params_reply(p_ble_evt->evt.gap_evt.conn_handle, BLE_GAP_SEC_STATUS_SUCCESS, &m_gap_security_settings, NULL);
+         break;
+
+      case BLE_GATTS_EVT_SYS_ATTR_MISSING:
+         sd_ble_gatts_sys_attr_set(p_ble_evt->evt.gap_evt.conn_handle, NULL, 0, 0);
+         break;
+
+      case BLE_GAP_EVT_SEC_INFO_REQUEST:
+         sd_ble_gap_sec_info_reply(p_ble_evt->evt.gap_evt.conn_handle, NULL, NULL, NULL);
+         break;
+
+      default:
+         break;
+   }
+
+
    ocelot_on_ble_evt((ble_evt_t*) p_ble_evt);
 }
 

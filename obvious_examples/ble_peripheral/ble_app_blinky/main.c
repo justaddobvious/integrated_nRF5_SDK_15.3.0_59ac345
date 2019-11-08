@@ -70,8 +70,6 @@
 
 #include "ocelot.h"
 #include "m_ocelot.h"
-#include "peer_manager.h"
-#include "peer_manager_handler.h"
 
 
 #define ADVERTISING_LED                 BSP_BOARD_LED_0                         /**< Is on when device is advertising. */
@@ -233,47 +231,6 @@ static void gap_params_init(void)
 static void gatt_init(void)
 {
     ret_code_t err_code = nrf_ble_gatt_init(&m_gatt, NULL);
-    APP_ERROR_CHECK(err_code);
-}
-
-/**@brief Function for handling Peer Manager events.
- *
- * @param[in] p_evt  Peer Manager event.
- */
-static void pm_evt_handler(pm_evt_t const * p_evt)
-{
-    pm_handler_on_pm_evt(p_evt);
-    pm_handler_flash_clean(p_evt);
-}
-
-static void peer_manager_init(void)
-{
-    ble_gap_sec_params_t sec_param;
-    ret_code_t           err_code;
-
-    err_code = pm_init();
-    APP_ERROR_CHECK(err_code);
-
-    memset(&sec_param, 0, sizeof(ble_gap_sec_params_t));
-
-    // Security parameters to be used for all security procedures.
-    sec_param.bond           = false;
-    sec_param.mitm           = false;
-    sec_param.lesc           = 0;
-    sec_param.keypress       = 0;
-    sec_param.io_caps        = BLE_GAP_IO_CAPS_NONE;
-    sec_param.oob            = false;
-    sec_param.min_key_size   = 7;
-    sec_param.max_key_size   = 16;
-    sec_param.kdist_own.enc  = 0;
-    sec_param.kdist_own.id   = 0;
-    sec_param.kdist_peer.enc = 0;
-    sec_param.kdist_peer.id  = 0;
-
-    err_code = pm_sec_params_set(&sec_param);
-    APP_ERROR_CHECK(err_code);
-
-    err_code = pm_register(pm_evt_handler);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -640,7 +597,6 @@ int main(void)
     services_init();
     advertising_init();
     conn_params_init();
-    peer_manager_init();
 
     // Initialize obvıous.
     m_ocelot_init();

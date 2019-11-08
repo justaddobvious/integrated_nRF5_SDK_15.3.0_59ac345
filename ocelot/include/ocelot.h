@@ -66,7 +66,7 @@
 
 #define OCELOT_VERSION_RELEASE         0
 #define OCELOT_VERSION_MAJOR           1
-#define OCELOT_VERSION_MINOR           4
+#define OCELOT_VERSION_MINOR           10
 
 #define OCELOT_CMAC_SIZE               16
 #define OCELOT_KEY_SIZE                16

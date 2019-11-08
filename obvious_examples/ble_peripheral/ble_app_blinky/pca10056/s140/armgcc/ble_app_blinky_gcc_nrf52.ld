@@ -3,9 +3,11 @@
 SEARCH_DIR(.)
 GROUP(-lgcc -lc -lnosys)
 
+INCLUDE "../../../../../../ocelot/include/libocelot.ld"
+
 MEMORY
 {
-  FLASH (rx) : ORIGIN = 0x26000, LENGTH = 0xda000
+  FLASH (rx) : ORIGIN = 0x26000, LENGTH = 0x57000
   RAM (rwx) :  ORIGIN = 0x200022e0, LENGTH = 0x3dd20
 }
 

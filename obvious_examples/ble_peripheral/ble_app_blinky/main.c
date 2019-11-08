@@ -163,10 +163,10 @@ static void obvious_led_blink_handler(void* p_context)
 {
    UNUSED_PARAMETER(p_context);
 
-   if(ocelot_is_feature_purchased(EXAMPLE_PRODUCT_FEATURE_LED_4))
+   if(ocelot_is_feature_purchased(NRF52840_DEV_KIT_FEATURE_LED_4))
       bsp_board_led_invert(OBVIOUS_LED);
 
-   if(ocelot_is_feature_enabled(EXAMPLE_PRODUCT_FEATURE_LED_4))
+   if(ocelot_is_feature_enabled(NRF52840_DEV_KIT_FEATURE_LED_4))
       bsp_board_led_on(OBVIOUS_LED);
 }
 

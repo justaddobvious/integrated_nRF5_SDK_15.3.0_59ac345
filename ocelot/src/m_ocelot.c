@@ -23,7 +23,7 @@
 
 #include "nrf_log.h"
 
-#define OCELOT_FLASH_START 0x7A000
+#define OCELOT_FLASH_START 0xFB000
 
 static uint32_t m_ocelot_evt_handler(enum OCELOT_EVT evt, union OCELOT_EVT_ARGS* args);
 static bool m_ocelot_flash_erase_page(uint32_t address);

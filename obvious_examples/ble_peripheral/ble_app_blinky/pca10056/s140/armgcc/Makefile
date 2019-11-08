@@ -2,7 +2,7 @@ PROJECT_NAME     := ble_app_blinky_pca10056_s140
 TARGETS          := nrf52840_xxaa
 OUTPUT_DIRECTORY := _build
 
-SDK_ROOT := ../../../../../..
+SDK_ROOT := ../../../../../../nRF5_SDK_15.3.0_59ac345
 PROJ_DIR := ../../..
 
 $(OUTPUT_DIRECTORY)/nrf52840_xxaa.out: \
@@ -62,6 +62,23 @@ SRC_FILES += \
   $(SDK_ROOT)/components/softdevice/common/nrf_sdh.c \
   $(SDK_ROOT)/components/softdevice/common/nrf_sdh_ble.c \
   $(SDK_ROOT)/components/softdevice/common/nrf_sdh_soc.c \
+  $(SDK_ROOT)/components/libraries/fstorage/nrf_fstorage.c \
+  $(SDK_ROOT)/components/libraries/fstorage/nrf_fstorage_sd.c \
+  $(SDK_ROOT)/components/ble/peer_manager/auth_status_tracker.c \
+  $(SDK_ROOT)/components/ble/peer_manager/gatt_cache_manager.c \
+  $(SDK_ROOT)/components/ble/peer_manager/gatts_cache_manager.c \
+  $(SDK_ROOT)/components/ble/peer_manager/id_manager.c \
+  $(SDK_ROOT)/components/ble/peer_manager/nrf_ble_lesc.c \
+  $(SDK_ROOT)/components/ble/peer_manager/peer_data_storage.c \
+  $(SDK_ROOT)/components/ble/peer_manager/peer_database.c \
+  $(SDK_ROOT)/components/ble/peer_manager/peer_id.c \
+  $(SDK_ROOT)/components/ble/peer_manager/peer_manager.c \
+  $(SDK_ROOT)/components/ble/peer_manager/peer_manager_handler.c \
+  $(SDK_ROOT)/components/ble/peer_manager/pm_buffer.c \
+  $(SDK_ROOT)/components/ble/peer_manager/security_dispatcher.c \
+  $(SDK_ROOT)/components/ble/peer_manager/security_manager.c \
+  $(SDK_ROOT)/components/libraries/fds/fds.c \
+  ../../../../../../ocelot/src/m_ocelot.c
 
 # Include folders common to all targets
 INC_FOLDERS += \
@@ -192,9 +209,11 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/nfc/ndef/conn_hand_parser/ac_rec_parser \
   $(SDK_ROOT)/components/libraries/stack_guard \
   $(SDK_ROOT)/components/libraries/log/src \
+  ../../../../../../ocelot/include \
 
 # Libraries common to all targets
 LIB_FILES += \
+  ../../../../../../ocelot/lib/libocelot.a \
 
 # Optimization flags
 OPT = -O3 -g3

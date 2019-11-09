@@ -24,7 +24,12 @@
 
 #include "nrf_log.h"
 
-#define OCELOT_FLASH_START 0xFB000
+#if defined(NRF_52840_XXAA)
+   #define OCELOT_FLASH_START 0xFB000
+#else
+   #define OCELOT_FLASH_START 0x7B000
+#endif
+
 
 static uint32_t m_ocelot_evt_handler(enum OCELOT_EVT evt, union OCELOT_EVT_ARGS* args);
 static bool m_ocelot_flash_erase_page(uint32_t address);
@@ -47,7 +52,7 @@ static const struct OCELOT_INIT m_ocelot_init_info =
    {
       .release = 0,
       .major = 1,
-      .minor = 3
+      .minor = 6
    },
    .evt_handler = m_ocelot_evt_handler
 };

@@ -7,8 +7,8 @@ INCLUDE "../../../../../../ocelot/include/libocelot.ld"
 
 MEMORY
 {
-  FLASH (rx) : ORIGIN = 0x26000, LENGTH = 0x57000
-  RAM (rwx) :  ORIGIN = 0x200022b8, LENGTH = 0xdd28
+  FLASH (rx) : ORIGIN = 0x26000, LENGTH = 0x22000
+  RAM (rwx) :  ORIGIN = 0x200022b8, LENGTH = 0xDD40
 }
 
 SECTIONS

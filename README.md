@@ -22,7 +22,7 @@ and initialize submodules using the command ```git submodule --init```
   * Select the "Library" option, and click "Create" in the top-right corner of the page.
   * Select SoftDevice S132, and choose version 6.1.1 from the drop-down list.
   * Select NRF52832\_XXAA as your chip.
-  * Set Ocelot Flash Start to 0x7A000, and Ocelot Reset Safe Ram Start to 0x2000FFE0
+  * Set Ocelot Flash Start to 0x7B000, and Ocelot Reset Safe Ram Start to 0x2000FFE0
   * Click "Generate SDK library".
   * Once the build finishes, click "Download" on the card displaying your build's details and extract the .zip file to a location of your choosing.
 7. Navigate to the portal's "Tools" tab, select the "Product File Generators" option, and click "Embedded" on the right side of the page to download a file that contains information concerning your products and features called "ocelot\_feature.h".
@@ -32,7 +32,7 @@ and initialize submodules using the command ```git submodule --init```
 11. Set the GNU\_INSTALL\_ROOT environment variable to /usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/ and ensure that ARM GCC 7-2018-q2-update is indeed located in the aforementioned location.
 12. Build the example by entering the ```make``` command.
 13. Program the example onto your development kit by entering ```make erase```, ```make flash_softdevice```, and then ```make flash```
-14. Back in the portal, select your product and navigate to the "Keys" page. Then, make note of your 16-byte product key. This key must be flashed onto your development board at address 0x7B000. On *nix machines, this can be accomplished by first entering the command ```echo 'PRODUCT_KEY' | xxd -r -p > product_key.bin```. Then, connect to your development kit with the JLink Commander utility and send it the command ```loadbin product_key.bin, 0x7B000```. At this point, the example can be tested with the Obvious Discover app!
+14. Back in the portal, select your product and navigate to the "Keys" page. Then, make note of your 16-byte product key. This key must be flashed onto your development board at address 0x7C000. On *nix machines, this can be accomplished by first entering the command ```echo 'PRODUCT_KEY' | xxd -r -p > product_key.bin```. Then, connect to your development kit with the JLink Commander utility and send it the command ```loadbin product_key.bin, 0x7C000```. At this point, the example can be tested with the Obvious Discover app!
 15. In the Obvious Discover app, select your device from the scan menu. You may wish to filter the list by tapping the three dots on the top-right side of the screen.
 16. Once your device has been selected, it will be provisioned automatically, and a feature update will occur. Notice that LED 4 on the development kit is not on. If you are evaluating the ble\_app\_uart example, notice that messages will be printed to the terminal backwards.
 17. Navigate to the app's checkout tab, select your feature, and tap "Checkout". To purchase the feature, use the test Visa number 4242424242424242 with expiry 10/30 and CVV 123.

@@ -742,6 +742,7 @@ static void advertising_start(void)
  */
 int main(void)
 {
+    bool ocelot_status;
     bool erase_bonds;
     // Initialize.
     uart_init();
@@ -758,8 +759,10 @@ int main(void)
     peer_manager_init();
 
     // Initialize obvıous.
-    m_ocelot_init();
-    m_ocelot_ble_init();
+    ocelot_status = m_ocelot_init();
+    NRF_LOG_INFO("ocelot initialized with status: %d", ocelot_status);
+    ocelot_status = m_ocelot_ble_init();
+    NRF_LOG_INFO("ocelot ble initialized with status: %d", ocelot_status);
 
     // Start execution.
     printf("\r\nUART started.\r\n");

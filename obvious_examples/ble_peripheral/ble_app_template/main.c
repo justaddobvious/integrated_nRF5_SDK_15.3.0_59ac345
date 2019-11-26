@@ -102,7 +102,7 @@
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000)                  /**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                       /**< Number of attempts before giving up the connection parameter negotiation. */
 
-#define SEC_PARAM_BOND                  1                                       /**< Perform bonding. */
+#define SEC_PARAM_BOND                  0                                       /**< Don't perform bonding. */
 #define SEC_PARAM_MITM                  0                                       /**< Man In The Middle protection not required. */
 #define SEC_PARAM_LESC                  0                                       /**< LE Secure Connections not enabled. */
 #define SEC_PARAM_KEYPRESS              0                                       /**< Keypress notifications not enabled. */
@@ -560,10 +560,10 @@ static void peer_manager_init(void)
     sec_param.oob            = SEC_PARAM_OOB;
     sec_param.min_key_size   = SEC_PARAM_MIN_KEY_SIZE;
     sec_param.max_key_size   = SEC_PARAM_MAX_KEY_SIZE;
-    sec_param.kdist_own.enc  = 1;
-    sec_param.kdist_own.id   = 1;
-    sec_param.kdist_peer.enc = 1;
-    sec_param.kdist_peer.id  = 1;
+    sec_param.kdist_own.enc  = 0;
+    sec_param.kdist_own.id   = 0;
+    sec_param.kdist_peer.enc = 0;
+    sec_param.kdist_peer.id  = 0;
 
     err_code = pm_sec_params_set(&sec_param);
     APP_ERROR_CHECK(err_code);

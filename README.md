@@ -19,7 +19,7 @@ and initialize submodules using the command ```git submodule --init```
   * Using the drop-down list, select "Purchasable" as the option for how the feature is to be delivered.
   * Toggle the "Feature Status" button to the "on" position.
 6. Add the feature to your product's catalog.
-  * Navigate to the portal's "Sales" tab, and select the "Catalog" option.
+  * Navigate to the portal's "Sales" tab, and select the "Catalog" option . 
   * Select your product, and then click the "Add" button in the top-right corner of the page.
   * Select "Individual" as the type of catalog item from the first drop-down menu, and select the name of your feature from the second drop-down menu.
   * Give your catalog entry a name, description, SKU, and a price. Enter image and thumbnail URLs if you wish. Then, click the "Add Individual Entry" button at the bottom of the form.
@@ -71,40 +71,38 @@ obviousutil init generate --key your_product_key --start-address ocelot_flash_st
 24. Upload new firmware to your portal
   * Update the sample application's version by opening ```$(INSTALL_ROOT)/ocelot/src/m_ocelot.c``` and changing the "major" value in the struct "m\_ocelot\_init\_info" from 3 to 4. 
   * Navigate back to your sample application's armgcc/ directory, and rebuild the application with the ```make``` command.
-  * Generate an encrypted firmware package with obviousutil:
-  ```
-  obviousutil pkg generate --key your_product_key --application path/to/hex/file 
-  --application-version-string R.M.m output_filename
-  ```
-  		* Choose R.M.m as 1.4.0 to reflect the change made earlier in this step.
+  * Generate an encrypted firmware package with obviousutil, making sure to choose 1.4.0 as R.M.m:
+```
+obviousutil pkg generate --key your_product_key --application path/to/hex/file --application-version-string R.M.m output_filename
+```
   * Back in your portal, go to the "Products" tab in the top-left corner of the page and then click your product's card.
   * Click "Firmware" on the left side of the page and then select "List".
   * Click the "Add" button in the top-right corner of the page and perform the following in the dialog that pops up:
-  		* Click the "Choose file" button and select your encrypted firmware package created with obviousutil.
+    * Click the "Choose file" button and select your encrypted firmware package created with obviousutil.
   		* Enter 1.4.0 as the version.
-  		* Enter Min Version 0.0.0 and Max Version 999.999.999. This defines which version of firmware can be updated to your new firmware.
+  		* Enter Min Version 0.0.0 and Max Version 999.999.999. This defines which version of firmware can be updated to your new       firmware.
   		* Enter some Release Notes, a Post Update Message, and a Comment if you wish.
   		* Click the "Create firmware" button at the bottom of the dialog.
 25. Create a group for your device and add your new firmware
   * In your portal, click the "Products" tab in the top-left corner, then click "Groups" on the left side of the page.
   * Click "Add" in the top-right corner of the page and perform the following in the dialog that pops up:
-  		* Name your group "Example Group".
+    * Name your group "Example Group".
   		* Give your example group a description if you wish.
   		* Select a priority level of 0 from the drop-down menu.
   		* Click the "Create group" button on the bottom of the dialog.
   * Click the new "Example Group" card that was just added to your groups list.
   * Click the "Add" button in the top-right corner of the page and perform the following in the dialog that pops up:
-  		* Select the new firmware you added to your portal in the previous step by selecting its version from the "Select Firmware" drop-down menu.
-  		* Enter 1.0.0 as your "Android Minimum Version".
-  		* Enter 1.0.0 as your "iOS Minimum Version".
-  		* Add a comment if you wish.
-  		* Click the "Add assignment" button at the bottom of the dialog.
-  * Within the "Example Group" page, select the "Devices" tab near the top of the page, NOT the "Devices" tab on the left side of the page.
-  * Click the "Add" button on the right side of the page, enter your device serial number into the "Find a device to add" field of the dialog that pops up, and click the "Add device" button at the bottom of the dialog.
+      * Select the new firmware you added to your portal in the previous step by selecting its version from the "Select             Firmware" drop-down menu.
+  		  * Enter 1.0.0 as your "Android Minimum Version".
+  		  * Enter 1.0.0 as your "iOS Minimum Version".
+  		  * Add a comment if you wish.
+  	   * Click the "Add assignment" button at the bottom of the dialog.
+  * Within the "Example Group" page, select the "Devices" tab near the top of the page, NOT the "Devices" tab on the left       side of the page.
+  * Click the "Add" button on the right side of the page, enter your device serial number into the "Find a device to add"       field of the dialog that pops up, and click the "Add device" button at the bottom of the dialog.
 26. Update your device firmware OTA via the Obvious Discover app
-  * In the Obvious Discover app, select your device from the scan menu. You may wish to filter the list by tapping the three dots on the top-right side of the screen.
+  * In the Obvious Discover app, select your device from the scan menu. You may wish to filter the list by tapping the three     dots on the top-right side of the screen.
   * Once your device has been selected, the provisioning state will be checked, and a feature update will be verified.
   * Next to "Firmware version" information there is a teal refresh button, press it and the current firmware version will be checked.
-  * A prompt will appear asking if you'd like to update the firmware, select yes and your new firmware will be uploaded onto your device!
+  * A prompt will appear asking if you'd like to update the firmware, select yes and your new firmware will be uploaded onto     your device!
 
   

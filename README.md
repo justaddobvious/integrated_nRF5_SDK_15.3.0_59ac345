@@ -2,7 +2,7 @@
 nRF5\_SDK\_15.3.0\_59ac345 examples with obvious integrated. The following constraints apply:
 
 1. Currently, only the ARM GCC toolchain has been tested.
-2. The Nordic PCA10040 development kit with SoftDevice S132 is currently the only supported target.
+2. The Nordic PCA10040 and PCA10056 development kits with SoftDevices S132 and S140, respectively, are currently the only supported targets.
 3. Ensure that the nRF Command Line Tool nrfjprog is installed on your computer. It can be found [here](https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF-Command-Line-Tools).
 
 
@@ -26,19 +26,31 @@ and initialize submodules using the command ```git submodule --init```
 7. Build and download the embedded library.
   * Select the portal's "Products" tab, click on your product, and then select the "Firmware" tab on the left side of the page.
   * Select the "Library" option, and click "Create" in the top-right corner of the page.
-  * Select SoftDevice S132, and choose version 6.1.1 from the drop-down list.
-  * Select NRF52832\_XXAA as your chip.
-  * Set Ocelot Flash Start to 0x7B000, and Ocelot Reset Safe Ram Start to 0x2000FFE0
+  * If you're using the PCA10040 nRF52832 development kit, perform the following:
+    * Select SoftDevice S132, and choose version 6.1.1 from the drop-down list.
+    * Select NRF52832_XXAA as your chip.
+    * Set Ocelot Flash Start to 0x7B000, and Ocelot Reset Safe Ram Start to 0x2000FFF8.
+  * If you're using the PCA10056 nRF52840 development kit, perform the following:
+    * Select SoftDevice S140, and choose version 6.1.1 from the drop-down list.
+    * Select NRF52840_XXAA as your chip.
+    * Set Ocelot Flash Start to 0xFB000, and Ocelot Reset Safe Ram Start to 0x2003FFF8.
   * Click "Generate SDK library".
   * Once the build finishes, click "Download" on the card displaying your build's details and extract the .zip file to a location of your choosing.
 8. Build and download ocelot DFU. 
   * Select the portal's "Products" tab, click your product, and then select the "Firmware" tab on the left side of the page.
   * Select the "DFU" option, and click "Create" in the top-right corner of the page.
-  * Select SoftDevice 132, and choose S132 version 6.1.1 from the drop-down list.
-  * Select NRF52832_XXAA as your chip.
-  * Set Ocelot Flash Start to 0x7B000, and Ocelot Reset Safe Ram Start to 0x2000FFF8.
-  * Set DFU Storage Start to 0x4B000, and DFU Storage Size to 0x27000.
-  * Set DFU Firmware Flash Start to 0x75000, set DFU Info Start to 0x7E000, and set DFU MBR Info Start to 0x7F000.
+  * If you're using the PCA10040 nRF52832 development kit, perform the following:
+    * Select SoftDevice 132, and choose S132 version 6.1.1 from the drop-down list.
+    * Select NRF52832_XXAA as your chip.
+    * Set Ocelot Flash Start to 0x7B000, and Ocelot Reset Safe Ram Start to 0x2000FFF8.
+    * Set DFU Storage Start to 0x4B000, and DFU Storage Size to 0x27000.
+    * Set DFU Firmware Flash Start to 0x75000, set DFU Info Start to 0x7E000, and set DFU MBR Info Start to 0x7F000.
+  * If you're using the PCA10056 nRF52840 development kit, perform the following:
+    * Select SoftDevice 140, and choose S140 version 6.1.1 from the drop-down list.
+    * Select NRF52840_XXAA as your chip.
+    * Set Ocelot Flash Start to 0xFB000, and Ocelot Reset Safe Ram Start to 0x2003FFF8.
+    * Set DFU Storage Start to 0x8B000, and DFU Storage Size to 0x67000.
+    * Set DFU Firmware Flash Start to 0xF5000, set DFU Info Start to 0xFE000, and set DFU MBR Info Start to 0xFF000.
   * Give your DFU a name, and then click "Generate DFU library".
   * Once the build finishes, click "Download" on the card displaying your DFU build's details and extract the .zip file to a location of your choosing. 
 9. Navigate to the portal's "Tools" tab, select the "Product File Generators" option, and click "Embedded" on the right side of the page to download a file that contains information concerning your products and features called "ocelot\_feature.h".
@@ -47,22 +59,22 @@ and initialize submodules using the command ```git submodule --init```
 12. Flash Ocelot DFU Bootloader
   * Erase the flash on the development kit: ```nrfjprog --eraseall```
   * Program the Ocelot DFU from the extracted Example_Product\_ocelotdfu\_X.X.X directory: ```nrfjprog --program $(OCELOT_DFU_ROOT)/bin/podboot.hex```
-13. Navigate to the Makefile of the example you wish to evaluate. For example, if you would like to evaluate the ble\_app\_blinky example, navigate to ```$(INSTALL_ROOT)/obvious_examples/ble_peripheral/ble_app_blinky/pca10040/s132/armgcc```
+13. Navigate to the Makefile of the example you wish to evaluate. For example, if you would like to evaluate the ble\_app\_blinky example on the PCA10040 nRF52832 development kit, navigate to ```$(INSTALL_ROOT)/obvious_examples/ble_peripheral/ble_app_blinky/pca10040/s132/armgcc```
 14. Set the GNU\_INSTALL\_ROOT environment variable to /usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/ and ensure that ARM GCC 7-2018-q2-update is indeed located in the aforementioned location.
 15. Build the example by entering the ```make``` command.
-16. Program the example onto your development kit by entering ```make flash_softdevice```, and then ```make flash```
+16. Program the example onto your development kit by entering ```make flash_softdevice```, and then ```make flash```.
 17. Use obviousutil to generate and program the DFU settings for the example you wish to evaluate: 
 ```
 obviousutil settings generate --application path/to/app/hex/file --application-version-string R.M.m
 --startaddress dfu_info_start_addr --program
 ```
   * Choose R.M.m as 1.3.0 for the application version string, as that is what is defined by default.
-  * The DFU info start address, as stated in step 8, should be 0x7E000.
+  * The DFU info start address, as stated in step 8, should either be 0x7E000 (PCA10040 nRF52832 development kit) or 0xFE000 (PCA10056 nRF52840 development kit).
 18. Back in the portal, select your product and navigate to the "Keys" page. Then, make note of your 16-byte product key and initialize your device using obviousutil:
 ```
 obviousutil init generate --key your_product_key --start-address ocelot_flash_start --program
 ```
-  * Ocelot flash start, as stated in step 8, should be 0x7B000.
+  * Ocelot flash start, as stated in step 8, should either be 0x7B000 (PCA10040 nRF52832 development kit) or 0xFB000 (PCA10056 nRF52840 development kit).
 19. In the Obvious Discover app, select your device from the scan menu. You may wish to filter the list by tapping the three dots on the top-right side of the screen.
 20. Once your device has been selected, it will be provisioned automatically, and a feature update will occur. Notice that LED 4 on the development kit is not on. If you are evaluating the ble\_app\_uart example, notice that messages will be printed to the terminal backwards.
 21. Navigate to the app's checkout tab, select your feature, and tap "Checkout". To purchase the feature, use the test Visa number 4242424242424242 with expiry 10/30 and CVV 123.

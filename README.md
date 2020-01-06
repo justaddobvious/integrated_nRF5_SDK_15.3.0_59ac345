@@ -8,7 +8,7 @@ nRF5\_SDK\_15.3.0\_59ac345 examples with obvious integrated. The following const
 
 ## Step-By-Step Integration Guide
 1. Clone this repository with the command ```git clone https://github.com/justaddobvious/integrated_nRF5_SDK_15.3.0_59ac345.git```  
-and initialize submodules using the command ```git submodule --init```
+and initialize submodules using the command ```git submodule update --init```
 2. Create a new Obvious portal on [our website](https://portal.obvious.xyz/create).
 3. Once logged in, navigate to the "Tools" tab, select "Command Line Tools", and click "Download". Once the download has finished, install the tool to your machine.
 4. Click on the "Products" tab, and create a new product by clicking "Add" in the top-right corner of the page. 

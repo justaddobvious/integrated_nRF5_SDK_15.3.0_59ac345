@@ -210,6 +210,7 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/libraries/stack_guard \
   $(SDK_ROOT)/components/libraries/log/src \
   ../../../../../../ocelot/include \
+  ../../../../../../ocelot/src \
 
 # Libraries common to all targets
 LIB_FILES += \
